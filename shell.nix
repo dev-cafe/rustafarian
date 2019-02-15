@@ -23,8 +23,9 @@ in
       pipenv
       python3Packages.ipython
 
-      # Example Additional Dependencies
-      pkgconfig openssl
+      pkgconfig
+      openssl
+      travis
     ];
 
     # Set Environment Variables
