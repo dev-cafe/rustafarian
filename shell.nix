@@ -21,10 +21,7 @@ in
       rustup
 
       pipenv
-      python3Packages.numpy
-      python3Packages.pytest
-      python3Packages.sphinx
-      python3Packages.yapf
+      python3Packages.ipython
 
       # Example Additional Dependencies
       pkgconfig openssl

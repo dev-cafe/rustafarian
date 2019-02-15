@@ -31,6 +31,8 @@ wheels/
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
+# Do not keep Pipfile.lock in version control if multiple versions of Python are being targeted.
+Pipfile.lock
 
 # Unit test / coverage reports
 htmlcov/

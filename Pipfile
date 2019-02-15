@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [dev-packages]
-
 epc = "*"
 flake8 = "*"
 hypothesis = "*"
@@ -24,5 +23,4 @@ wheel = "*"
 yapf = "*"
 
 [packages]
-
 click = "*"
