@@ -1,10 +1,10 @@
 [package]
-name = "string-sum"
+name = "rustafarian"
 version = "0.1.0"
-edition = "2018"
+edition = "2019"
 
 [lib]
-name = "string_sum"
+name = "rustafarian"
 crate-type = ["cdylib"]
 
 [dependencies.pyo3]

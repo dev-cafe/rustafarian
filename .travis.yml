@@ -13,7 +13,7 @@ cache:
     - $HOME/.cargo
 
 install:
-  - pip install -U tox-travis pipenv
+  - pip install -U pipenv
   - curl https://sh.rustup.rs -sSf | sh -s -- -y -v --default-toolchain nightly-2019-01-15
   - source "$HOME"/.cargo/env
   - pipenv install --dev
@@ -22,8 +22,7 @@ before_script:
   - rustc --version
 
 script:
-  - cargo build --release
-  #- tox
+  - pipenv run pyo3-pack develop
 
 #deploy:
 #  provider: pypi
@@ -34,4 +33,4 @@ script:
 #  on:
 #    tags: true
 #    repo: robertodr/rustafarian
-#    python: 3.6
+#    python: 3.5
