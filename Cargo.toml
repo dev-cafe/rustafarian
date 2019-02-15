@@ -2,6 +2,7 @@
 name = "rustafarian"
 version = "0.1.0"
 edition = "2019"
+authors = ["Roberto Di Remigio <roberto.diremigio@gmail.com>"]
 
 [lib]
 name = "rustafarian"
