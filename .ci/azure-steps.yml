@@ -1,0 +1,20 @@
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(python.version)'
+    architecture: 'x64'
+
+- script: |
+    python -m pip install --upgrade pip pipenv
+    curl https://sh.rustup.rs -sSf | sh -s -- -y -v --default-toolchain nightly-2019-01-15
+    source "$HOME"/.cargo/env
+    pipenv install --dev
+  displayName: 'Install dependencies'
+
+- script: |
+    rustc --version
+  displayName: 'Report Rust version'
+
+- script: |
+    pipenv run pyo3-pack develop
+  displayName: 'Build project'

@@ -13,7 +13,7 @@ cache:
     - $HOME/.cargo
 
 install:
-  - pip install -U pipenv
+  - pip install --upgrade pip pipenv
   - curl https://sh.rustup.rs -sSf | sh -s -- -y -v --default-toolchain nightly-2019-01-15
   - source "$HOME"/.cargo/env
   - pipenv install --dev

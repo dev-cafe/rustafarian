@@ -1,0 +1,37 @@
+jobs:
+
+- job: 'Windows'
+  pool:
+    vmImage: 'vs2017-win2016'
+  strategy:
+    matrix:
+      Python37:
+        python.version: '3.7'
+        pyver: 'py37'
+      Python36:
+        python.version: '3.6'
+        pyver: 'py36'
+      Python35:
+        python.version: '3.5'
+        pyver: 'py35'
+    maxParallel: 2
+  steps:
+  - template: .ci/azure-steps.yml
+
+- job: 'macOS'
+  pool:
+    vmImage: 'macOS-10.13'
+  strategy:
+    matrix:
+      Python37:
+        python.version: '3.7'
+        pyver: 'py37'
+      Python36:
+        python.version: '3.6'
+        pyver: 'py36'
+      Python35:
+        python.version: '3.5'
+        pyver: 'py35'
+    maxParallel: 2
+  steps:
+  - template: .ci/azure-steps.yml
