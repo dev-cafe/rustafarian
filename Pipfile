@@ -1,0 +1,28 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+
+epc = "*"
+flake8 = "*"
+hypothesis = "*"
+importmagic = "*"
+pyls-isort = "*"
+pyls-mypy = "*"
+pyo3-pack = "*"
+pytest = "*"
+pytest-benchmark = "*"
+pytest-dependency = "*"
+pytest-runner = "*"
+python-language-server = "*"
+tox = "*"
+twine = "*"
+watchdog = "*"
+wheel = "*"
+yapf = "*"
+
+[packages]
+
+click = "*"

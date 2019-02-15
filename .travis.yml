@@ -1,0 +1,32 @@
+dist: xenial
+
+language: python
+
+python:
+  - 3.7
+  - 3.6
+  - 3.5
+
+install:
+  - pip install -U tox-travis pipenv
+  - curl https://sh.rustup.rs -sSf | sh -s -- -y -v --default-toolchain nightly-2019-01-15
+  - source "$HOME"/.cargo/env
+  - pipenv install --dev
+
+before_script:
+  - rustc --version
+
+script:
+  - cargo build --release
+  #- tox
+
+#deploy:
+#  provider: pypi
+#  distributions: sdist bdist_wheel
+#  user: robertodr
+#  password:
+#    secure: VD8VF1Q/gD/cfAQzeUrxv6JKfXvFWlfrzu2JtprVj+Bxb/Twf2136p7nndtUqrgqvTXo2iaJ+ZMCB27hXG0SJl++KsgYzImBF4tQKfFGGBIb8KuahTbeMHp2Z4KwLiSKs0ZI1PC05g384ukEKGXrk5cENngR+vMcAkajcNBkS95q1SbVG1pxe7U7R5cBGS6YZPk+OUH80vsV7uDYrcF7dR/HoVJtpEnGDSQitEXz0bW0hHUnPtsfhTcNoVpfApe4HY8OigedOhKv6CIZJ6gvqnsBBh5Zk3mOW0c63BdpmvInGBJUxCt+yN/DVwIU9+s+BSKpcLIP3t2K5a8MxYhVbcQfogNSqWEs2faSl+Zgc4ZZTsMhsDBIpiId966hWYMgU8xFA7WaFHoVSnn/Dr2bucq46yFqVivkvPL+WYLJUBK39kiNB0P34w451swvU6psaT1pwpUN9gLhLLN7Bux3a5KdcRdXAC+mUijSNnUjVbN4E/VYq2be87UMutYGlQJ/dDmrtOMlaxR0MMmkR6+GEJpi/V6cYjCuKnvMv5TOfnjfRjtZRhKk4aegZFscYYAerJs0qBTzOzEHbKYv1ImSMwFJ0DuDiQ9BJ0h157nR0jDEgpK0+6qHxTtdkyK3eFNny1gsFW8IZbgRpkTFnsp37vfB+jVZHnhRVaFpcIP9VdY=
+#  on:
+#    tags: true
+#    repo: robertodr/rustafarian
+#    python: 3.6
