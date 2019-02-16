@@ -9,7 +9,9 @@ fn sum_as_string(a: usize, b: usize) -> PyResult<String> {
 
 /// This module is a python module implemented in Rust.
 #[pymodule]
-fn string_sum(_py: Python, m: &PyModule) -> PyResult<()> {
+fn rustafarian(_py: Python, m: &PyModule) -> PyResult<()> {
+    m.add("__version__", env!("CARGO_PKG_VERSION"))?;
+
     m.add_wrapped(wrap_pyfunction!(sum_as_string))?;
 
     Ok(())
