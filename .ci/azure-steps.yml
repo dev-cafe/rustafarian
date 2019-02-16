@@ -9,6 +9,7 @@ steps:
     curl https://sh.rustup.rs -sSf | sh -s -- -y -v --default-toolchain nightly-2019-01-15
     echo "##vso[task.prependpath]%USERPROFILE%\.cargo\bin"
     pipenv install --dev
+    echo $(PATH)
   displayName: 'Install dependencies'
 
 - script: |
@@ -17,5 +18,6 @@ steps:
   displayName: 'Report Rust version'
 
 - script: |
+    echo $(PATH)
     pipenv run pyo3-pack develop
   displayName: 'Build project'
