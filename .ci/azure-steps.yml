@@ -7,8 +7,6 @@ steps:
 - script: |
     python -m pip install --upgrade pip pipenv
     curl https://sh.rustup.rs -sSf | sh -s -- -y -v --default-toolchain nightly-2019-01-15
-    echo ##vso[task.prependpath]%USERPROFILE%\.cargo\bin
-    echo "##vso[task.prependpath]$HOME\.cargo\bin"
     pipenv install --dev
   displayName: 'Install dependencies'
 

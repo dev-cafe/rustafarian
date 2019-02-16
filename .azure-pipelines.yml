@@ -16,6 +16,8 @@ jobs:
         pyver: 'py35'
     maxParallel: 2
   steps:
+  - script: |
+      echo "##vso[task.prependpath]$HOME/.cargo/bin"
   - template: .ci/azure-steps.yml
 
 - job: 'Windows'
@@ -34,4 +36,6 @@ jobs:
         pyver: 'py35'
     maxParallel: 2
   steps:
+  - script: |
+      echo ##vso[task.prependpath]%USERPROFILE%\.cargo\bin
   - template: .ci/azure-steps.yml
