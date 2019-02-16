@@ -12,6 +12,7 @@ steps:
   displayName: 'Install dependencies'
 
 - script: |
+    echo $(PATH)
     rustc --version
   displayName: 'Report Rust version'
 
