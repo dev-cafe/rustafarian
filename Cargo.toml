@@ -6,11 +6,13 @@ authors = ["Roberto Di Remigio <roberto.diremigio@gmail.com>"]
 
 [lib]
 name = "rustafarian"
-crate-type = ["cdylib"]
+crate-type = ["rlib", "cdylib"]
 
 [dependencies.pyo3]
 version = "0.6.0-alpha.2"
-features = ["extension-module"]
+
+[features]
+default = ["pyo3/extension-module"]
 
 [profile.release]
 opt-level = 3
