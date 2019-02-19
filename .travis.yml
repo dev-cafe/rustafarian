@@ -12,6 +12,7 @@ install:
 - pip install --upgrade pip pipenv
 - curl https://sh.rustup.rs -sSf | sh -s -- -y -v --default-toolchain nightly-2019-01-15
 - source "$HOME"/.cargo/env
+- cargo install pyo3-pack
 - pipenv install --dev
 before_script:
 - rustc --version
