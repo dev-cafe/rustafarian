@@ -8,8 +8,8 @@ authors = ["Roberto Di Remigio <roberto.diremigio@gmail.com>"]
 name = "rustafarian"
 crate-type = ["cdylib"]
 
-[dependencies.pyo3]
-version = "0.6.0-alpha.2"
+[dependencies]
+pyo3 = "0.6.0-alpha.2"
 
 [features]
 default = ["pyo3/extension-module"]
