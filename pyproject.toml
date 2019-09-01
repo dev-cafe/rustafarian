@@ -1,0 +1,16 @@
+[build-system]
+requires = ["maturin"]
+build-backend = "maturin"
+
+[tool.poetry]
+name = "rustafarian"
+version = "0.2.0"
+description = ""
+authors = ["Roberto Di Remigio <roberto.diremigio@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.6"
+
+#[tool.poetry.dev-dependencies]
+# This is problematic due to a pip bug...
+#maturin = ">=0.7.1"

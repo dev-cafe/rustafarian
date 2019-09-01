@@ -9,15 +9,15 @@ cache:
   directories:
   - "$HOME/.cargo"
 install:
-- pip install --upgrade pip pipenv
+- pip install --upgrade pip poetry
 - curl https://sh.rustup.rs -sSf | sh -s -- -y -v --default-toolchain nightly-2019-02-07
 - source "$HOME"/.cargo/env
-- cargo install pyo3-pack
-- pipenv install --dev
+- cargo install maturin
+- poetry install
 before_script:
 - rustc --version
 script:
-- pipenv run pyo3-pack develop
+- maturin develop
 env:
   global:
     secure: "bpWHsND70DdKu/+rXkzfUJmu3D2nWta6gO3vvwsrQTnUO034BlG5hFlO5C9213BLmXW3rz84CwuhASPUgDikhfLtEh9ZcEnYIug7HAh/EAmFUfZ9nmMWPh4BIzM452qkrQmdYlI8v9srWa2zdGFyyUKeFGhVRsvDl+IM6NibiNO/Eg2VcbbLUMiERzD/4sZxqN4QtLo7OYE6lDVkqtdh6ZHXErv39oxxbkbDyz/BXnRc6W+TTMOqUrF1Dy/KjaJ5JyoZYK1eUEpKkKasRL/72mWO4gXNi/+M4bXpsxB0zDo24zUkv1duauwK1e9WtvLtLohi7z1sQ4mCP0yM3n/pgpL32+KiQfmXph6inV0zzhwaHUw+HrTs9lG2JU9HxzYn0efj18T2hhMsT17zdIHK14nGW7p1rOLSh2SzHzo2cXu4DZDj68GfoU9GFpo712wC8rhQud0wKUopddlH7bi/19T/o0bMcf99xeIFh3p0osuO0P06g6OpRbVc1Zv4jrrnJ1apXIV1GNhz3xutkW5XUZOrO/CjdE4icLIrv4l05ggzZc+64wzZvC9P8W53mplffNEVYzeNsCT9Uparkz19iwfUrLrKvCpePBCUPSnMstke3mystbdkgFJgaZ7N/Ou1JHfkpuIutdtHtdGDPW1CPYQjVxu+W04CbGx+WvG+R+Y="

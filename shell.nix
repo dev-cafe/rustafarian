@@ -1,37 +1,59 @@
-let
-  hostPkgs = import <nixpkgs> {};
-  nixpkgs = (hostPkgs.fetchFromGitHub {
-    owner = "NixOS";
-    repo = "nixpkgs-channels";
-    # SHA for latest commit on 2019-02-11 for the nixos-unstable branch
-    rev = "36f316007494c388df1fec434c1e658542e3c3cc";
-    sha256 = "1w1dg9ankgi59r2mh0jilccz5c4gv30a6q1k6kv2sn8vfjazwp9k";
-  });
-in
-  with import nixpkgs {
-    overlays = [(self: super:
-      {
-      }
-    )];
-  };
+with import (builtins.fetchGit {
+  name = "nixos-19.03";
+  url = "https://github.com/NixOS/nixpkgs-channels";
+  ref = "nixos-19.03";
+  # Commit hash for nixos-19.03 as of 2019-08-18
+  # `git ls-remote https://github.com/nixos/nixpkgs-channels nixos-19.03`
+  rev = "67135fbcc5d5d28390c127ef519b09a362ef2466";
+}) {
+  overlays = [(self: super:
+    {
+      python3 = super.python3.override {
+        packageOverrides = py-self: py-super: {
+          python-language-server = py-super.python-language-server.override {
+            providers = [
+              "rope"
+              "pyflakes"
+              "mccabe"
+              "pycodestyle"
+              "pydocstyle"
+            ];
+          };
+        };
+      };
+    }
+  )];
+};
 
-  stdenv.mkDerivation {
-    name = "rust-env";
-    buildInputs = [
-      rustup
+stdenv.mkDerivation {
+  name = "PyO3-sandbox";
+  buildInputs = [
+    rustup
 
-      pipenv
-      python3Packages.ipython
+    # Python dev-packages
+    python3Packages.black
+    python3Packages.epc
+    python3Packages.importmagic
+    python3Packages.ipython
+    python3Packages.isort
+    python3Packages.jedi
+    python3Packages.mypy
+    python3Packages.pyls-black
+    python3Packages.pyls-isort
+    python3Packages.pyls-mypy
+    python3Packages.pytest
+    python3Packages.python-language-server
 
-      pkgconfig
-      openssl
-      travis
-    ];
+    lldb
+    openssl
+    pkgconfig
+    travis
+  ];
 
-    # Set Environment Variables
-    RUST_BACKTRACE = 1;
-    src = null;
-    shellHook = ''
-    SOURCE_DATE_EPOCH=$(date +%s)
-    '';
-  }
+  # Set Environment Variables
+  RUST_BACKTRACE = 1;
+  src = null;
+  shellHook = ''
+  SOURCE_DATE_EPOCH=$(date +%s)
+  '';
+}

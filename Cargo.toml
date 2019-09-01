@@ -4,15 +4,16 @@ version = "0.2.0"
 edition = "2018"
 authors = ["Roberto Di Remigio <roberto.diremigio@gmail.com>"]
 
+[package.metadata.maturin.scripts]
+get_42 = "rustafarian:get_42"
+
+[dependencies]
+pyo3 = { version = "0.7.0", features = ["extension-module"]}
+maturin = { version = "0.7.1" }
+
 [lib]
 name = "rustafarian"
 crate-type = ["cdylib"]
-
-[dependencies]
-pyo3 = "0.6.0-alpha.2"
-
-[features]
-default = ["pyo3/extension-module"]
 
 [profile.release]
 opt-level = 3
