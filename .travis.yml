@@ -3,11 +3,9 @@ language: python
 python:
 - 3.7
 - 3.6
-- 3.5
 cache:
   pip: true
-  directories:
-  - "$HOME/.cargo"
+  cargo: true
 install:
 - pip install --upgrade pip poetry
 - curl https://sh.rustup.rs -sSf | sh -s -- -y -v --default-toolchain nightly
