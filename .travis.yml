@@ -10,7 +10,7 @@ cache:
   - "$HOME/.cargo"
 install:
 - pip install --upgrade pip poetry
-- curl https://sh.rustup.rs -sSf | sh -s -- -y -v --default-toolchain nightly-2019-02-07
+- curl https://sh.rustup.rs -sSf | sh -s -- -y -v --default-toolchain nightly
 - source "$HOME"/.cargo/env
 - cargo install maturin
 - poetry install
