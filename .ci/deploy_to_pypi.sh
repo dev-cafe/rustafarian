@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-pipenv run pyo3-pack publish \
+maturin publish \
        --username robertodr \
        --password "$PYPI_PASSWORD"
