@@ -1,21 +1,41 @@
 dist: xenial
+
 language: python
+
 python:
-- 3.6
-- 3.7
+  - 3.6
+  - 3.7
+
+# See https://gist.github.com/jkcclemens/000456ca646bd502cac0dbddcb8fa307
 cache:
   pip: true
   cargo: true
+before_cache:
+  - rm -rfv target/debug/incremental/{rustafarian,build_script_build,common}-*
+  - rm -rfv target/debug/.fingerprint/rustafarian-*
+  - rm -rfv target/debug/build/rustafarian-*
+  - rm -rfv target/debug/deps/librustafarian-*
+  - rm -rfv target/debug/deps/rustafarian-*
+  - rm -rfv target/debug/{rustafarian,librustafarian}.d
+  - cargo clean -p rustafarian
+
 install:
-- pip install --upgrade pip poetry
-- curl https://sh.rustup.rs -sSf | sh -s -- -y -v --default-toolchain nightly
-- source "$HOME"/.cargo/env
-- cargo install maturin
-- poetry install --no-dev
+  - pip install --upgrade pip poetry
+  - curl https://sh.rustup.rs -sSf | sh -s -- -y -v --default-toolchain nightly
+  - source "$HOME"/.cargo/env
+  - cargo install maturin
+  - poetry install --no-dev
+
 before_script:
-- rustc --version
+  - rustc --version
+
 script:
-- poetry run maturin develop
+  - poetry run maturin develop
+
+env:
+  global:
+    secure: Z53BFQvT8J8t65hbKG//k+WvfI0K35yhKVu8gaR31JonFLW8biyMFqtPcmCJDbNt+qH3qZQr2ieRd2pYc27Reau5ckCPdd0jNvXj6ogY4+PPbV5pfHaWLVeOizAPxohv4OabppmP01sf8u0dFOYVcrEPkr4rtV3r+ldt9rZxRlOPfy6f309ulplJ9+UX0nNhMq9EJmHR0wtADznYyIdK1wI5qItGo7YqKeauOUe+/YiyYAh9UhxUAGVlhNfzHo3lZfpzTDV4/HnWTQq2qSyZI/Jb0FAOyqIgp10YExoww2Py0MFjcBbjMGuEvDsXZp1LL1jPbjFIkmhZHKK65ZNAd6lbpn3+ENSPctQAglArPLwwPO5e/uGsTdLTMIzCw8sfReqPLo4xTqwDW0LkVpCZSZZKOdISALodDA1dZKlz0z2M6aXLGTYSIhtbm2BO23UU7bV9W+kWt6xEPxYPuvPOIOoK20Kj8fmx6JbuCv5xH9x9tAH67Y+wrwVcJtLvgVA6iJof5vo0siNoO7bySTvHus05qQtZFpI3adeElUPnuqu/mxz9cnSmDirIaMuuxllJukLOIO0jwganKOefYalXCMTEdON0tGNCosvkcObNvtOSGr7XI/EQ3Dfwx4d/dwIQGj+OUIHebCNkEiK+MhnhMEePCowB5y0V/m1zNW0pEyw=
+
 deploy:
   provider: script
   script: ".ci/deploy_to_pypi.sh"
@@ -23,5 +43,3 @@ deploy:
     tags: true
     repo: robertodr/rustafarian
     python: 3.6
-  password:
-    secure: eAcS/VzTCVkIFuLhDok0cfJlPtVKRE+ktj45jvcOir3c6xYkO+BKh996gtycKFkT8oHa4k1ZRxYLQR9pm71gvlXQA7BKa3A8Y/VT4q7ZBqG2MMMEn5dgrGSr5svU5MzpyPa++h0sKMpj48atB/OraDbRuhjvnX7NxMqLPmHu5q0B7y+XezjnSajEVKZIFzDP8pf57TOZoRKb8OFgn9+EyvrB4RP57xwtjBFRixcSuJGihhTJxwzAD6yM+iEbEy3h4AUpEkOx9kNmgWpCO4TyZdvkZkLp/lrAvHBwwUCPIZ0wxM0IVEvjan+hz1IFxybVMQkRs/GHVAhe4rDuN31IykXZe1gzOmG+2hPNrle8v7ThM1f+EMigYH0OvQMp2Fxr3SyTKRW5vwpO+6tNCb4m84gmaTNhC2b6jkgkkSHB2YHltPpGf0aNmdWFIGCdCVmAi1ngv+2afiTCqH45HGArmAUSyHXJPG7cNUVvad5+PDoNfZHoaNKbTUASe6o/DiwaVh+NQr9Of97GFlQ5+lrmKYyuDSDhRCX2XIoHhBnzCrKFbkfOX11pcoEbVc+/Vz26XYuOkS19q4tmLylyGGbTeWLckcx0qYRHmQxTqHTgoBN7H+Z84vXLJr1Z5y9GT1tgiTjVtlvpYu/D8sYoRm4iDiZP9rUHdd/e73hZzI+0eQQ=
