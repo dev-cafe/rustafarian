@@ -1,8 +1,8 @@
 dist: xenial
 language: python
 python:
-- 3.7
 - 3.6
+- 3.7
 cache:
   pip: true
   cargo: true
@@ -16,9 +16,6 @@ before_script:
 - rustc --version
 script:
 - poetry run maturin develop
-env:
-  global:
-    secure: "bpWHsND70DdKu/+rXkzfUJmu3D2nWta6gO3vvwsrQTnUO034BlG5hFlO5C9213BLmXW3rz84CwuhASPUgDikhfLtEh9ZcEnYIug7HAh/EAmFUfZ9nmMWPh4BIzM452qkrQmdYlI8v9srWa2zdGFyyUKeFGhVRsvDl+IM6NibiNO/Eg2VcbbLUMiERzD/4sZxqN4QtLo7OYE6lDVkqtdh6ZHXErv39oxxbkbDyz/BXnRc6W+TTMOqUrF1Dy/KjaJ5JyoZYK1eUEpKkKasRL/72mWO4gXNi/+M4bXpsxB0zDo24zUkv1duauwK1e9WtvLtLohi7z1sQ4mCP0yM3n/pgpL32+KiQfmXph6inV0zzhwaHUw+HrTs9lG2JU9HxzYn0efj18T2hhMsT17zdIHK14nGW7p1rOLSh2SzHzo2cXu4DZDj68GfoU9GFpo712wC8rhQud0wKUopddlH7bi/19T/o0bMcf99xeIFh3p0osuO0P06g6OpRbVc1Zv4jrrnJ1apXIV1GNhz3xutkW5XUZOrO/CjdE4icLIrv4l05ggzZc+64wzZvC9P8W53mplffNEVYzeNsCT9Uparkz19iwfUrLrKvCpePBCUPSnMstke3mystbdkgFJgaZ7N/Ou1JHfkpuIutdtHtdGDPW1CPYQjVxu+W04CbGx+WvG+R+Y="
 deploy:
   provider: script
   script: ".ci/deploy_to_pypi.sh"
@@ -26,3 +23,5 @@ deploy:
     tags: true
     repo: robertodr/rustafarian
     python: 3.6
+  password:
+    secure: eAcS/VzTCVkIFuLhDok0cfJlPtVKRE+ktj45jvcOir3c6xYkO+BKh996gtycKFkT8oHa4k1ZRxYLQR9pm71gvlXQA7BKa3A8Y/VT4q7ZBqG2MMMEn5dgrGSr5svU5MzpyPa++h0sKMpj48atB/OraDbRuhjvnX7NxMqLPmHu5q0B7y+XezjnSajEVKZIFzDP8pf57TOZoRKb8OFgn9+EyvrB4RP57xwtjBFRixcSuJGihhTJxwzAD6yM+iEbEy3h4AUpEkOx9kNmgWpCO4TyZdvkZkLp/lrAvHBwwUCPIZ0wxM0IVEvjan+hz1IFxybVMQkRs/GHVAhe4rDuN31IykXZe1gzOmG+2hPNrle8v7ThM1f+EMigYH0OvQMp2Fxr3SyTKRW5vwpO+6tNCb4m84gmaTNhC2b6jkgkkSHB2YHltPpGf0aNmdWFIGCdCVmAi1ngv+2afiTCqH45HGArmAUSyHXJPG7cNUVvad5+PDoNfZHoaNKbTUASe6o/DiwaVh+NQr9Of97GFlQ5+lrmKYyuDSDhRCX2XIoHhBnzCrKFbkfOX11pcoEbVc+/Vz26XYuOkS19q4tmLylyGGbTeWLckcx0qYRHmQxTqHTgoBN7H+Z84vXLJr1Z5y9GT1tgiTjVtlvpYu/D8sYoRm4iDiZP9rUHdd/e73hZzI+0eQQ=
