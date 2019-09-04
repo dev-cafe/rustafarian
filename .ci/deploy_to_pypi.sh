@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-poetry run maturin publish \
+maturin publish \
        --interpreter python3.6 \
        --username robertodr
