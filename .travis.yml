@@ -5,11 +5,19 @@ language: python
 python:
   - 3.6
   - 3.7
+  - 3.8-dev
+
+allow_failures:
+  - 3.8-dev
+
+rust:
+  - nightly
 
 # See https://gist.github.com/jkcclemens/000456ca646bd502cac0dbddcb8fa307
 cache:
   pip: true
   cargo: true
+
 before_cache:
   - rm -rfv target/debug/incremental/{rustafarian,build_script_build,common}-*
   - rm -rfv target/debug/.fingerprint/rustafarian-*
@@ -21,7 +29,7 @@ before_cache:
 
 install:
   - pip install --upgrade pip poetry
-  - curl https://sh.rustup.rs -sSf | sh -s -- -y -v --default-toolchain nightly
+    #- curl https://sh.rustup.rs -sSf | sh -s -- -y -v --default-toolchain nightly
   - source "$HOME"/.cargo/env
   - cargo install maturin
   - poetry install --no-dev
