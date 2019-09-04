@@ -11,6 +11,6 @@ authors = ["Roberto Di Remigio <roberto.diremigio@gmail.com>"]
 [tool.poetry.dependencies]
 python = ">=3.6"
 
-#[tool.poetry.dev-dependencies]
-# This is problematic due to a pip bug...
-#maturin = ">=0.7.1"
+[tool.poetry.dev-dependencies]
+# This is problematic on NixOS so I run with --no-dev
+maturin = ">=0.7.1"
