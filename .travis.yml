@@ -33,8 +33,7 @@ install:
   - pip install --upgrade pip poetry
   - curl https://sh.rustup.rs -sSf | sh -s -- -y -v --default-toolchain=$TRAVIS_RUST_VERSION
   - source "$HOME"/.cargo/env
-  - cargo install maturin
-  - poetry install --no-dev
+  - poetry install maturin
 
 before_script:
   - rustc --version
