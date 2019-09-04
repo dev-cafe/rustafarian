@@ -10,10 +10,6 @@ python:
 allow_failures:
   - 3.8-dev
 
-rust:
-  - nightly
-
-# See https://gist.github.com/jkcclemens/000456ca646bd502cac0dbddcb8fa307
 cache:
   pip: true
   cargo: true
@@ -29,7 +25,6 @@ before_cache:
 
 install:
   - pip install --upgrade pip poetry
-    #- curl https://sh.rustup.rs -sSf | sh -s -- -y -v --default-toolchain nightly
   - source "$HOME"/.cargo/env
   - cargo install maturin
   - poetry install --no-dev
@@ -42,7 +37,9 @@ script:
 
 env:
   global:
-    secure: Z53BFQvT8J8t65hbKG//k+WvfI0K35yhKVu8gaR31JonFLW8biyMFqtPcmCJDbNt+qH3qZQr2ieRd2pYc27Reau5ckCPdd0jNvXj6ogY4+PPbV5pfHaWLVeOizAPxohv4OabppmP01sf8u0dFOYVcrEPkr4rtV3r+ldt9rZxRlOPfy6f309ulplJ9+UX0nNhMq9EJmHR0wtADznYyIdK1wI5qItGo7YqKeauOUe+/YiyYAh9UhxUAGVlhNfzHo3lZfpzTDV4/HnWTQq2qSyZI/Jb0FAOyqIgp10YExoww2Py0MFjcBbjMGuEvDsXZp1LL1jPbjFIkmhZHKK65ZNAd6lbpn3+ENSPctQAglArPLwwPO5e/uGsTdLTMIzCw8sfReqPLo4xTqwDW0LkVpCZSZZKOdISALodDA1dZKlz0z2M6aXLGTYSIhtbm2BO23UU7bV9W+kWt6xEPxYPuvPOIOoK20Kj8fmx6JbuCv5xH9x9tAH67Y+wrwVcJtLvgVA6iJof5vo0siNoO7bySTvHus05qQtZFpI3adeElUPnuqu/mxz9cnSmDirIaMuuxllJukLOIO0jwganKOefYalXCMTEdON0tGNCosvkcObNvtOSGr7XI/EQ3Dfwx4d/dwIQGj+OUIHebCNkEiK+MhnhMEePCowB5y0V/m1zNW0pEyw=
+    - TRAVIS_RUST_VERSION=nightly
+    - RUST_BACKTRACE=1
+    - secure: HD6R3/zEiR0r0ZI451QCM+UM/uNEbNFB2xq0HppzK0OzwaRjSoHbFOG/en49kFyQRE+Y7EdZdaiWptIq19xC/gGcxgMtCKDAhhudyVK4vg9VTyga78CHrCJJs+oqw6/PRrQ9YuxuF92wEknBPZPpaswZ1nXIfG+pwnAJ9eIqk8JAfiOhsfyQf2Ppe75dvLQloHOzryFws+s375N33nAh55GdaNGjvknTsu54yOtZWql1mhmPCI1jDZPWjFdbOCsY8AhCP2hkt+gCa2+1/XsVNwGKdGCyOCr3TvWA11Sz+fZSsoOi9REgpTcDKkxjLjsiR7GMlwSqEQyvwo+Vb+MNLiuV8u/+V3Z0/ICGENokHUhmP5bluwlreJ6DTiq4FwSAnu8nOUbVgm7PLNcmV5lMxGHGcRvnSnzdnLx8+ozoE5nH+hpKk2hdHrFEhJBtxlbREn74V91yaQotqtM1BiMedGuBxqdmGdnsDLwpKWBwp2fkQac/cgBOo/oVCgP05Do6AdvK1K1/B4t+sDUOwA9ZooSVVz7v0CamMI8homQ5ZAhAoYZ6xiFROwK+RfDI5Ijstpj99GT/bOEBL0JKUyvCb8SFpD+30CCorN5wWDk0WEMqc5ys2IVEYv4JTJsVyF7ZU9W1z3ejHrZ4PsfTTvU0xdm3+/JCnbh70s3gMJpmqzM=
 
 deploy:
   provider: script
