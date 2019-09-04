@@ -25,35 +25,32 @@ with import (builtins.fetchGit {
   )];
 };
 
+let src = fetchFromGitHub {
+  owner = "mozilla";
+  repo = "nixpkgs-mozilla";
+  # commit from: 2019-09-04
+  rev = "b52a8b7de89b1fac49302cbaffd4caed4551515f";
+  sha256 = "1np4fmcrg6kwlmairyacvhprqixrk7x9h89k813safnlgbgqwrqb";
+};
+in
+with import "${src.out}/rust-overlay.nix" pkgs pkgs;
 stdenv.mkDerivation {
-  name = "PyO3-sandbox";
+  name = "rustafarian";
+  nativeBuildInputs = [
+    # Note: to use use stable, just replace `nightly` with `stable`
+    latest.rustChannels.nightly.rust
+
+    # Example Build-time Additional Dependencies
+    #pkgconfig
+  ];
+
   buildInputs = [
-    rustup
-
-    # Python dev-packages
-    python3Packages.black
-    python3Packages.epc
-    python3Packages.importmagic
-    python3Packages.ipython
-    python3Packages.isort
-    python3Packages.jedi
-    python3Packages.mypy
-    python3Packages.pyls-black
-    python3Packages.pyls-isort
-    python3Packages.pyls-mypy
-    python3Packages.pytest
-    python3Packages.python-language-server
-
-    lldb
-    openssl
-    pkgconfig
+    # Example Run-time Additional Dependencies
+    #openssl
+    pipenv
     travis
   ];
 
   # Set Environment Variables
   RUST_BACKTRACE = 1;
-  src = null;
-  shellHook = ''
-  SOURCE_DATE_EPOCH=$(date +%s)
-  '';
 }
