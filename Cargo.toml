@@ -9,7 +9,6 @@ get_42 = "rustafarian:get_42"
 
 [dependencies]
 pyo3 = { version = "0.7.0", features = ["extension-module"]}
-maturin = { version = "0.7.1" }
 
 [lib]
 name = "rustafarian"
