@@ -1,3 +1,20 @@
+[tool.poetry]
+name = "rustafarian"
+version = "0.3.6"
+description = ""
+authors = ["Roberto Di Remigio <roberto.diremigio@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+click = "^7.0"
+
+[tool.poetry.dev-dependencies]
+maturin = "^0.7.6"
+pytest = "^4.0"
+
+[tool.poetry.scripts]
+rustafarian = 'rustafarian.cli:cli'
+
 [build-system]
-requires = ["maturin"]
+requires = ["maturin", "setuptools"]
 build-backend = "maturin"

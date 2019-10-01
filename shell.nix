@@ -34,23 +34,45 @@ let src = fetchFromGitHub {
 };
 in
 with import "${src.out}/rust-overlay.nix" pkgs pkgs;
-stdenv.mkDerivation {
+mkShell {
   name = "rustafarian";
   nativeBuildInputs = [
-    # Note: to use use stable, just replace `nightly` with `stable`
+    # Note: to use stable, just replace `nightly` with `stable`
     latest.rustChannels.nightly.rust
 
-    # Example Build-time Additional Dependencies
+    # Build-time Additional Dependencies
     #pkgconfig
   ];
 
+  # Run-time Additional Dependencies
   buildInputs = [
-    # Example Run-time Additional Dependencies
-    #openssl
-    pipenv
+    python3
+    python3.pkgs.poetry
+
+    # System libraries needed for Python packages
+    #freetype # Demanded by matplotlib
+
+    # Development tools
+    lldb
+    python3.pkgs.black
+    python3.pkgs.epc
+    python3.pkgs.importmagic
+    python3.pkgs.isort
+    python3.pkgs.jedi
+    python3.pkgs.mypy
+    python3.pkgs.pyls-black
+    python3.pkgs.pyls-isort
+    python3.pkgs.pyls-mypy
+    python3.pkgs.python-language-server
     travis
   ];
 
   # Set Environment Variables
   RUST_BACKTRACE = 1;
+  shellHook = ''
+    SOURCE_DATE_EPOCH=$(date +%s) # required for python wheels
+
+    export PYTHONPATH="$VIRTUAL_ENV/${python3.sitePackages}:$PYTHONPATH"
+    export PATH="$VIRTUAL_ENV/bin:$PATH"
+  '';
 }
