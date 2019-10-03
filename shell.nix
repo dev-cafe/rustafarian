@@ -46,8 +46,9 @@ mkShell {
 
   # Run-time Additional Dependencies
   buildInputs = [
+    pipenv
+
     python3
-    python3.pkgs.poetry
 
     # System libraries needed for Python packages
     #freetype # Demanded by matplotlib
@@ -72,6 +73,14 @@ mkShell {
   shellHook = ''
     SOURCE_DATE_EPOCH=$(date +%s) # required for python wheels
 
+    local venv=$(pipenv --bare --venv &>> /dev/null)
+
+    if [[ -z $venv || ! -d $venv ]]; then
+      pipenv install --dev &>> /dev/null
+    fi
+
+    export VIRTUAL_ENV=$(pipenv --venv)
+    export PIPENV_ACTIVE=1
     export PYTHONPATH="$VIRTUAL_ENV/${python3.sitePackages}:$PYTHONPATH"
     export PATH="$VIRTUAL_ENV/bin:$PATH"
   '';
