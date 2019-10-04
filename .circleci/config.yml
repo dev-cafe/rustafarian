@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: konstin2/maturin
+      - image: konstin2/maturin:master
 
     steps:
       - checkout
