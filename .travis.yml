@@ -1,6 +1,9 @@
-dist: xenial
+dist: bionic
 
 language: python
+
+services:
+  - docker
 
 python:
   - 3.6
@@ -49,4 +52,6 @@ deploy:
   on:
     tags: true
     repo: robertodr/rustafarian
-    python: 3.6
+    python:
+      - 3.6
+      - 3.7

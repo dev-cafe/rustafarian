@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-maturin publish \
-       --interpreter python3.6 \
+docker run --rm -v $(pwd):/io \
+       konstin2/maturin publish \
        --username robertodr \
        --password "$MATURIN_PASSWORD"
