@@ -3,12 +3,16 @@ name = "rustafarian"
 version = "0.3.10"
 edition = "2018"
 authors = ["Roberto Di Remigio <roberto.diremigio@gmail.com>"]
+build = "build.rs"
 
 [package.metadata.maturin.scripts]
 rustafarian = 'rustafarian.cli:cli'
 
 [dependencies]
 pyo3 = { version = "0.8.0", features = ["extension-module"]}
+
+[build-dependencies]
+vergen = { version = "3.0.4" }
 
 [lib]
 name = "rustafarian"

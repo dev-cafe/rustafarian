@@ -15,6 +15,7 @@ fn get_21() -> usize {
 #[pymodule]
 fn rustafarian(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add("__version__", env!("CARGO_PKG_VERSION"))?;
+    m.add("__sha__", env!("VERGEN_SHA"))?;
 
     m.add_wrapped(wrap_pyfunction!(sum_as_string))?;
     m.add_wrapped(wrap_pyfunction!(get_21))?;
