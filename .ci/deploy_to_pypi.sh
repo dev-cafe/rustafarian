@@ -8,6 +8,6 @@ docker run \
        -v "$(pwd)":/io \
        konstin2/maturin:master \
        publish \
-       --python python3.6 python3.7 \
+       --interpreter python3.6 python3.7 \
        --username robertodr \
        --password "$MATURIN_PASSWORD"
