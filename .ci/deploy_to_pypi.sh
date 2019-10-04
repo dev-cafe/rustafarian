@@ -2,4 +2,5 @@
 
 maturin publish \
        --interpreter python3.6 \
-       --username robertodr
+       --username robertodr \
+       --password "$MATURIN_PASSWORD"
