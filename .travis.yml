@@ -28,7 +28,6 @@ env:
     - PIPENV_VERBOSITY=-1
     - TRAVIS_RUST_VERSION=nightly
     - RUST_BACKTRACE=1
-    - secure: rOYK3mjNM2H7YGLjfaEab3wuYRwQd6coZts2OiAtuPtGZFygghvrfg3bsVw7ySIeAIqk4ga6C2/Jiaw1KN9dfta2Yrqo+TJjemnTE0vfu2EuGqAT3yT2mJUksU7ca9bTB2gU08yypOhcfpGIv0QwGJRo0E5Wae9ykBKh95Tou+bNSh/UwjvxoVP+yiZPEdL1ZSxFmQG8ueNTdpgXD8llohbgfAL3PuIo4ZkmzcktV4qLYsnVB+lzRwydp1khJANr5DM0bY1KozrRPg5fyT6nHtuBEQd/TnDQMQUkOogYkSQmp1TjzmRISbYuQPbouEo0z4fbD3i/YvCMpTCgLNVXfG1vDvI9h502krLvNskq3I7OUdA536gVM+WEWVML4zeAvmub6mIQtrF7IziCk+ob6lL1cxuiOpFuP4e8rSmOTLn2+U3tTTjk1qFUK1ul+RvRvmz4Nn11e7Q2IN8lDgP2zw5HTlLzXDGVnTPfFbbmv8AVh3AqhuWpdYe9/lAmJLzbF3y7uyx729Icw36mGbE24Hn4zVDl+lUCtl6AD0w4dA1FLmE1YAhVLqhp+mTx11w+3R0lnTVe3ped9lkaLsMIWYrzpAAKkIdpbq42wbffwrrhxFJapAaUgj4d2YWmlhhpiNwpWRE3GJ0+mYxJCDuJ0yWvzksSKETQeSPBCrmohx0=
 
 install:
   - pip install --upgrade pip
