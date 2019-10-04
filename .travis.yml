@@ -52,6 +52,3 @@ deploy:
   on:
     tags: true
     repo: robertodr/rustafarian
-    python:
-      - 3.6
-      - 3.7
