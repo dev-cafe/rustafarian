@@ -1,10 +1,10 @@
 with import (builtins.fetchGit {
-  name = "nixos-19.03";
+  name = "nixos-19.09-2019-10-10";
   url = "https://github.com/NixOS/nixpkgs-channels";
-  ref = "nixos-19.03";
-  # Commit hash for nixos-19.03 as of 2019-08-18
-  # `git ls-remote https://github.com/nixos/nixpkgs-channels nixos-19.03`
-  rev = "67135fbcc5d5d28390c127ef519b09a362ef2466";
+  ref = "nixos-19.09";
+  # Commit hash for nixos-19.09 as of 2019-10-10
+  # `git ls-remote https://github.com/nixos/nixpkgs-channels nixos-19.09`
+  rev = "9bbad4c6254513fa62684da57886c4f988a92092";
 }) {
   overlays = [(self: super:
     {
@@ -28,9 +28,10 @@ with import (builtins.fetchGit {
 let src = fetchFromGitHub {
   owner = "mozilla";
   repo = "nixpkgs-mozilla";
-  # commit from: 2019-09-04
-  rev = "b52a8b7de89b1fac49302cbaffd4caed4551515f";
-  sha256 = "1np4fmcrg6kwlmairyacvhprqixrk7x9h89k813safnlgbgqwrqb";
+  # Commit hash for master as of 2019-10-10
+  # `git ls-remote https://github.com/mozilla/nixpkgs-mozilla master`
+  rev = "d46240e8755d91bc36c0c38621af72bf5c489e13";
+  sha256 = "0icws1cbdscic8s8lx292chvh3fkkbjp571j89lmmha7vl2n71jg";
 };
 in
 with import "${src.out}/rust-overlay.nix" pkgs pkgs;
@@ -38,7 +39,18 @@ mkShell {
   name = "rustafarian";
   nativeBuildInputs = [
     # Note: to use stable, just replace `nightly` with `stable`
-    latest.rustChannels.nightly.rust
+    #latest.rustChannels.nightly.rust
+   ((rustChannelOf
+     {
+       date = "2019-08-01";
+       channel = "nightly";
+     }).rust.override {
+       extensions = [
+         "rls-preview"
+         "rust-analysis"
+         "rustfmt-preview"
+       ];
+     })
 
     # Build-time Additional Dependencies
     #pkgconfig
@@ -72,6 +84,9 @@ mkShell {
   RUST_BACKTRACE = 1;
   shellHook = ''
     SOURCE_DATE_EPOCH=$(date +%s) # required for python wheels
+
+    # FIXME This is temporarily needed to avoid problems with Cargo
+    unset SSL_CERT_FILE
 
     local venv=$(pipenv --bare --venv &>> /dev/null)
 
