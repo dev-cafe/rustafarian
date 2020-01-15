@@ -7,7 +7,6 @@ steps:
 - script: |
     python -m pip install --upgrade pip pipenv
     curl https://sh.rustup.rs -sSf | sh -s -- -y -v --default-toolchain nightly-2019-01-15
-    cargo install pyo3-pack
     pipenv install --dev
   displayName: 'Install dependencies'
 
@@ -16,5 +15,5 @@ steps:
   displayName: 'Report Rust version'
 
 - script: |
-    pipenv run pyo3-pack develop
+    pipenv run maturin develop
   displayName: 'Build project'
