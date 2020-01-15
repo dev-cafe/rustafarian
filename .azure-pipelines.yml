@@ -5,15 +5,15 @@ jobs:
     vmImage: 'macOS-10.13'
   strategy:
     matrix:
+      Python38:
+        python.version: '3.8'
+        pyver: 'py38'
       Python37:
         python.version: '3.7'
         pyver: 'py37'
       Python36:
         python.version: '3.6'
         pyver: 'py36'
-      Python35:
-        python.version: '3.5'
-        pyver: 'py35'
     maxParallel: 2
   steps:
   - script: |
@@ -25,15 +25,15 @@ jobs:
     vmImage: 'vs2017-win2016'
   strategy:
     matrix:
+      Python38:
+        python.version: '3.8'
+        pyver: 'py38'
       Python37:
         python.version: '3.7'
         pyver: 'py37'
       Python36:
         python.version: '3.6'
         pyver: 'py36'
-      Python35:
-        python.version: '3.5'
-        pyver: 'py35'
     maxParallel: 2
   steps:
   - script: |
