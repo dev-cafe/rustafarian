@@ -5,10 +5,10 @@ steps:
     architecture: 'x64'
 
 - script: |
-    python -m pip install --upgrade pip pipenv
+    python -m pip install --upgrade pip poetry
     curl https://sh.rustup.rs -sSf | sh -s -- -y -v --default-toolchain nightly
     rustup default nightly
-    pipenv install --dev
+    poetry install --no-root
   displayName: 'Install dependencies'
 
 - script: |
@@ -16,5 +16,9 @@ steps:
   displayName: 'Report Rust version'
 
 - script: |
-    pipenv run maturin develop
+    poetry run maturin develop
   displayName: 'Build project'
+
+- script: |
+    poetry run python -m pytest -rws -v tests/
+  displayName: 'Test project'

@@ -31,17 +31,17 @@ env:
 
 install:
   - pip install --upgrade pip
-  - pip install -U pipenv
+  - pip install -U poetry
   - curl https://sh.rustup.rs -sSf | sh -s -- -y -v --default-toolchain=$TRAVIS_RUST_VERSION
   - source "$HOME"/.cargo/env
-  - pipenv install --dev .
+  - poetry install --no-root
 
 before_script:
   - rustc --version
   - python --version
 
 script:
-  - pipenv run py.test -rws -v tests/
+  - poetry run python -m pytest -rws -v tests/
 
 deploy:
   provider: script
