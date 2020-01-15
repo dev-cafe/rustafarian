@@ -28,6 +28,16 @@ In addition:
 In a real-world repository `shell.nix` and `.envrc` would not be checked in,
 but rather tracked in a "stash branch" using [`git-along`]
 
+`pipenv install --dev .` installs the project and its development dependencies.
+This is an editable install and puts the scripts (entry points) in the right
+places.
+
+`maturin develop` builds the Rust extension. Needs to be done to actually get
+`python -c "import rustafarian"` to work without problem from the root of the
+project.
+
+I guess if one has tests for the scripts `pipenv install --dev` and `maturin
+develop` might be enough?
 
 ### Copyright
 
